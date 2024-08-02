@@ -1,1 +1,3 @@
-This is a repository for Unity Web test builds.
+Unity projects for testing Web builds
+
+[Index](https://keijiro.github.io/WebGPU-Test/)
