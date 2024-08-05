@@ -5,22 +5,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>VFXCustomCode - Unity WebGPU VFX Graph Sample</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <main>
-      <canvas id="unity-canvas" width="720" height="405" tabindex="-1" style="width: 720px; height: 405px"></canvas>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
       <script src="Build/VFXCustomCode.loader.js"></script>
       <script>
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-          arguments: [],
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        var config = {
           dataUrl: "Build/VFXCustomCode.data.unityweb",
           frameworkUrl: "Build/VFXCustomCode.framework.js.unityweb",
           codeUrl: "Build/VFXCustomCode.wasm.unityweb",
-          streamingAssetsUrl: "StreamingAssets",
           companyName: "DefaultCompany",
           productName: "VFXCustomCode",
           productVersion: "0.1"
-        });
+        };
+        createUnityInstance(canvas, config, Progress);
       </script>
       <h3>VFXCustomCode - Unity WebGPU VFX Graph Sample</h3>
       <p>VFXCustomCode is a Unity WebGPU sample project for the HLSL custom code feature of VFX Graph.</p>
