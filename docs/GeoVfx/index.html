@@ -5,22 +5,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>GeoVFX - Unity WebGPU VFX Graph Sample</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <main>
-      <canvas id="unity-canvas" width="720" height="405" tabindex="-1" style="width: 720px; height: 405px"></canvas>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
       <script src="Build/GeoVfx.loader.js"></script>
       <script>
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-          arguments: [],
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        var config = {
           dataUrl: "Build/GeoVfx.data.unityweb",
           frameworkUrl: "Build/GeoVfx.framework.js.unityweb",
           codeUrl: "Build/GeoVfx.wasm.unityweb",
-          streamingAssetsUrl: "StreamingAssets",
           companyName: "DefaultCompany",
           productName: "GeoVfx",
           productVersion: "0.1"
-        });
+        };
+        createUnityInstance(canvas, config, Progress);
       </script>
       <h3>GeoVFX - Unity WebGPU VFX Graph Sample</h3>
       <p>GeoVFX is a Unity WebGPU sample project that visualizes geographical data using the VFX Graph. This visualization presents data from <a href="https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-rev11">Gridded Population of the World (GPW) v4</a>.</p>
