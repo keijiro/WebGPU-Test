@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SdfVfxStickies - Unity WebGPU VFX Graph Sample</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
+      <script src="Build/SdfVfxStickies.loader.js"></script>
+      <script>
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        var config = {
+          dataUrl: "Build/SdfVfxStickies.data.unityweb",
+          frameworkUrl: "Build/SdfVfxStickies.framework.js.unityweb",
+          codeUrl: "Build/SdfVfxStickies.wasm.unityweb",
+          companyName: "DefaultCompany",
+          productName: "SdfVfxStickies",
+          productVersion: "0.1"
+        };
+        createUnityInstance(canvas, config, Progress);
+      </script>
+      <h3>SdfVfxStickies - Unity WebGPU VFX Graph Sample</h3>
+      <p>SdfVfxStickies is a Unity WebGPU sample project that tests the use of a 3D texture as an SDF (Signed Distance Field) with VFX Graph.
+      The particles in this VFX use the SDF to calculate the trajectory as they approach and stick to the surface.</p>
+      <p>Explore the source project on GitHub <a href="https://github.com/keijiro/SdfVfxSamples">here</a>.</p>
+      <p>For details of Unity WebGPU support, please visit the <a href="https://discussions.unity.com/t/early-access-to-the-new-webgpu-backend-in-unity-2023-3/933493">Discussions thread</a>.</p>
+      <p>Back to the <a href="..">index page</a>.</p>
+    </main>
+  </body>
+</html>
