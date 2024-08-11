@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>NoiseBall6 - Unity WebGPU Compute Benchmark</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
+      <script src="Build/NoiseBall6.loader.js"></script>
+      <script>
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        var config = {
+          dataUrl: "Build/NoiseBall6.data.unityweb",
+          frameworkUrl: "Build/NoiseBall6.framework.js.unityweb",
+          codeUrl: "Build/NoiseBall6.wasm.unityweb",
+          companyName: "DefaultCompany",
+          productName: "NoiseBall6",
+          productVersion: "0.1"
+        };
+        createUnityInstance(canvas, config, Progress);
+      </script>
+      <h3>NoiseBall6 - Unity WebGPU Compute Benchmark</h3>
+      <p>NoiseBall6 is a Unity WebGPU sample project designed to run a simple benchmark using GPU compute (compute shader).
+      Please note that the Unity WebGL Player does not support disabling vsync, so the FPS count is tied to the display’s refresh rate.</p>
+      <p>Explore the source project on GitHub <a href="https://github.com/keijiro/NoiseBall6">here</a>.</p>
+      <p>For details of Unity WebGPU support, please visit the <a href="https://discussions.unity.com/t/early-access-to-the-new-webgpu-backend-in-unity-2023-3/933493">Discussions thread</a>.</p>
+      <p>Back to the <a href="..">index page</a>.</p>
+    </main>
+  </body>
+</html>
