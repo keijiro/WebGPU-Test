@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MetavidoVFX - Unity WebGPU Sample</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
+      <script src="Build/MetavidoVFX.loader.js"></script>
+      <script>
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const sourceUrl = urlParams.get("source");
+        var config = {
+          arguments: sourceUrl ? ["--sourceURL", sourceUrl] : [],
+          dataUrl: "Build/MetavidoVFX.data.unityweb",
+          frameworkUrl: "Build/MetavidoVFX.framework.js.unityweb",
+          codeUrl: "Build/MetavidoVFX.wasm.unityweb",
+          companyName: "DefaultCompany",
+          productName: "MetavidoVFX",
+          productVersion: "0.1"
+        };
+        createUnityInstance(canvas, config, Progress);
+      </script>
+      <h3>MetavidoVFX - Unity WebGPU Sample</h3>
+      <p>Explore the source project on GitHub <a href="https://github.com/keijiro/MetavidoVFX">here</a>.</p>
+      <p>For details of Unity WebGPU support, please visit the <a href="https://discussions.unity.com/t/early-access-to-the-new-webgpu-backend-in-unity-2023-3/933493">Discussions thread</a>.</p>
+      <p>Back to the <a href="..">index page</a>.</p>
+    </main>
+  </body>
+</html>
