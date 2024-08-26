@@ -20,7 +20,10 @@
         function Progress(value) {
           loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
         }
+        const urlParams = new URLSearchParams(window.location.search);
+        const sourceUrl = urlParams.get("source");
         var config = {
+          arguments: sourceUrl ? ["--sourceURL", sourceUrl] : [],
           dataUrl: "Build/Metavido.data.unityweb",
           frameworkUrl: "Build/Metavido.framework.js.unityweb",
           codeUrl: "Build/Metavido.wasm.unityweb",
