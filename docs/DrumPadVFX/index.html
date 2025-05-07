@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DrumPadVFX - Unity WebGPU & Web MIDI Sample</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <main>
+      <div id="unity-container">
+        <div id="unity-loading"/></div>
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
+      </div>
+      <script src="Build/DrumPadVFX.loader.js"></script>
+      <script>
+        var canvas = document.querySelector("#unity-canvas");
+        var loading = document.getElementById("unity-loading");
+        function Progress(value) {
+          loading.innerHTML = "Loading... " + Math.round(value * 100) + "%";
+        }
+        var config = {
+          dataUrl: "Build/DrumPadVFX.data.unityweb",
+          frameworkUrl: "Build/DrumPadVFX.framework.js.unityweb",
+          codeUrl: "Build/DrumPadVFX.wasm.unityweb",
+          companyName: "Keijiro",
+          productName: "DrumPadVFX",
+          productVersion: "0.1"
+        };
+        createUnityInstance(canvas, config, Progress);
+      </script>
+      <h3>DrumPadVFX - Unity WebGPU and Web MIDI Sample</h3>
+      <p>DrumPadVFX is a Unity Web sample project showcasing the integration of
+      WebGPU and Web MIDI. It serves as a visualizer specifically designed for
+      Yamaha Finger Drum Pads (FGDP-30/50), allowing you to trigger visual
+      effects by hitting the pads.</p>
+      <p>Currently, the visualizer supports the following pads: Kick, Snare,
+      Hi-hat (closed and open), and Crash cymbal.</p>
+      <p>Note: A browser with both WebGPU and Web MIDI support is required.
+      Chrome or Edge is recommended.</p>
+      <p>Explore the source project on GitHub <a href="https://github.com/keijiro/DrumPadVFX">here</a>.</p>
+      <p>For details of Unity WebGPU support, please visit the <a href="https://discussions.unity.com/t/early-access-to-the-new-webgpu-backend-in-unity-2023-3/933493">Discussions thread</a>.</p>
+      <p>Back to the <a href="..">index page</a>.</p>
+    </main>
+  </body>
+</html>
